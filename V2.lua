@@ -6404,6 +6404,7 @@ local Frame = Instance.new("Frame")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
+local VirtualInputManager = game:GetService("VirtualInputManager")
 UIBUTTON.Name = "UIBUTTON"
 UIBUTTON.Parent = game.CoreGui
 UIBUTTON.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -6424,6 +6425,8 @@ UIStroke.Color = Color3.fromRGB(118,222,243)
 UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
-ImageButton.MouseButton1Click:Connect(function() game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game) end)
-task.wait(0.1)
+ImageButton.MouseButton1Click:Connect(function() 
+  VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.End, false, game)
+  VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.End, false, game)
+end)
 return Library, SaveManager, InterfaceManager, Mobile
